@@ -1,6 +1,7 @@
 import serial
 import time
 
+
 def read_serial_data(port, baud_rate, timeout=1):
     try:
         # Open the serial port
@@ -15,6 +16,7 @@ def read_serial_data(port, baud_rate, timeout=1):
                 if ser.in_waiting > 0:
                     # Read a line of data from the serial port
                     line = ser.readline().decode('utf-8').strip()
+                    data = line.split(",")
                     print(f"Received: {line}")
     except serial.SerialException as e:
         print(f"Error: {e}")
