@@ -11,9 +11,16 @@
 #define DATAY0 0x34
 #define DATAZ0 0x36
 
+
 // BNO055 registers
 #define BNO055_OPR_MODE 0x3D
 #define BNO055_ACCEL_DATA_X_LSB 0x08
+
+//BNO055 Pinout:
+//VIN → 5V
+//GND → GND
+//SCL → A5 (Nano I2C Clock)
+//SDA → A4 (Nano I2C Data)
 
 void setup() {
   Serial.begin(115200);
@@ -29,14 +36,17 @@ void setup() {
 
 void loop() {
   // Read and print data from the first ADXL375
-  Serial.print("ADXL375 Sensor 1:");
-  readAndPrintADXL375Univalue(ADXL375_ADDRESS_1);
+  //Serial.print("ADXL375 Sensor 1:");
+  float accel_1 = readAndPrintADXL375Univalue(ADXL375_ADDRESS_1);
 
   // Read and print data from the second ADXL375
-  Serial.print("ADXL375 Sensor 2:");
-  readAndPrintADXL375Univalue(ADXL375_ADDRESS_2);
+  //Serial.print("ADXL375 Sensor 2:");
+  float accel_2 = readAndPrintADXL375Univalue(ADXL375_ADDRESS_2);
 
-  Serial.println("g");
+  Serial.print(accel_1, 4);
+  Serial.print(",");
+  Serial.println(accel_2, 4);
+  //Serial.println("Hello from Arduino!");
 
   // Read and print data from the BNO055
   //Serial.println("BNO055:");
@@ -86,8 +96,7 @@ void readAndPrintADXL375(uint8_t address) {
   Serial.print(z_g, 2);
   Serial.println(" g");
 }
-
-void readAndPrintADXL375Univalue(uint8_t address) {
+float readAndPrintADXL375Univalue(uint8_t address) {
   int16_t x = readAxis(address, DATAX0);
   int16_t y = readAxis(address, DATAY0);
   int16_t z = readAxis(address, DATAZ0);
@@ -99,8 +108,7 @@ void readAndPrintADXL375Univalue(uint8_t address) {
   float a_g = sqrt(sq(x_g) + sq(y_g) + sq(z_g));
 
   
-  Serial.print(a_g, 2);
-  Serial.print(" ");
+  return a_g;
 }
 
 
