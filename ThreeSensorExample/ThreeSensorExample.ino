@@ -82,7 +82,7 @@ void loop() {
   //Serial.println("BNO055:");
   //readAndPrintBNO055();
 
-  delay(500); // Delay between readings
+  delay(5); // Delay between readings
 }
 
 void initializeADXL375(uint8_t address) {

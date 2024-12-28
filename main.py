@@ -75,7 +75,7 @@ def create_window_with_buttons():
 
     timer = QTimer()
     timer.timeout.connect(lambda conn=serial_connection, file=output_file: read_serial_data(conn, file))
-    timer.start(1000)
+    timer.start(10)
 
     window.show()
 
