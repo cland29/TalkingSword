@@ -6,6 +6,7 @@
 #define BNO055_ADDRESS    0x28
 
 // ADXL375 registers
+#define DATA_FORMAT 0x31
 #define POWER_CTL 0x2D
 #define DATAX0 0x32
 #define DATAY0 0x34
@@ -89,6 +90,12 @@ void initializeADXL375(uint8_t address) {
   Wire.beginTransmission(address);
   Wire.write(POWER_CTL);
   Wire.write(0x08); // Set to measurement mode
+  Wire.endTransmission();
+
+   // Set the range to ±200g
+  Wire.beginTransmission(address);
+  Wire.write(DATA_FORMAT);
+  Wire.write(0x0B); // Full resolution (bit 3 = 1), range = ±200g (bits 0-1 = 11)
   Wire.endTransmission();
 }
 
