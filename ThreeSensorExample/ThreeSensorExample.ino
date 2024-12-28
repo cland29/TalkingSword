@@ -31,7 +31,7 @@ void setup() {
   initializeADXL375(ADXL375_ADDRESS_2);
   initializeBNO055();
 
-  Serial.println("Sensors initialized. Reading data...");
+  //Serial.println("Sensors initialized. Reading data...");
 }
 
 void loop() {
