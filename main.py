@@ -27,7 +27,7 @@ def establish_serial_connection(port, baud_rate, timeout=1):
     output_file = open("myfile.txt", "w")
     
     
-    output_file.write("timestamp, gyroX, gyroY, gyroZ, Accel_1_X, Accel_1_Y, Accel_1_Z, Accel_2_X, Accel_2_Y, Accel_2_Z, classification\n")
+    output_file.write("timestamp,gyroX,gyroY,gyroZ,Accel_1_X,Accel_1_Y,Accel_1_Z,Accel_2_X,Accel_2_Y,Accel_2_Z,classification\n")
 
     try:
         # Open the serial port
