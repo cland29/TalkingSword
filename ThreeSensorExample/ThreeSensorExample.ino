@@ -17,6 +17,7 @@
 #define BNO055_OPR_MODE 0x3D
 #define BNO055_ACCEL_DATA_X_LSB 0x08
 
+
 //BNO055 Pinout:
 //VIN → 5V
 //GND → GND
@@ -24,8 +25,11 @@
 //SDA → A4 (Nano I2C Data)
 
 void setup() {
+  int SDA = 4;
+  int SCL = 5;
+
   Serial.begin(115200);
-  Wire.begin();
+  Wire.begin(SDA, SCL);
 
   // Initialize sensors
   initializeADXL375(ADXL375_ADDRESS_1);
@@ -83,7 +87,7 @@ void loop() {
   //Serial.println("BNO055:");
   //readAndPrintBNO055();
 
-  delay(5); // Delay between readings
+  delay(500); // Delay between readings
 }
 
 void initializeADXL375(uint8_t address) {
