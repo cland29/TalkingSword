@@ -17,3 +17,8 @@ Next, you will want to install the following libraries using pip:
 ```pip install gpiozero```
 
 Now, you should be ready to go!
+
+# Tutorials
+Along the way, we used a series of examples. This list is not complete as we only started once we switched to the raspberry pi. In order to help others, here is some of the we used:
+
+https://learn.adafruit.com/adafruit-max98357-i2s-class-d-mono-amp/overview
