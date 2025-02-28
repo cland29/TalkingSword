@@ -22,6 +22,8 @@ import adafruit_bno055
 # Create library object using our Extended Bus I2C port
 # Use `ls /dev/i2c*` to find out what i2c devices are connected
 i2c = I2C(1)  # Device is /dev/i2c-1
+print(f"i2c type: {type(i2c)} | i2c value: {i2c}")
+
 sensor = adafruit_bno055.BNO055_I2C(i2c)
 
 last_val = 0xFFFF
