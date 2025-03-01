@@ -59,6 +59,7 @@ def hit_threshold():
          print(f"TRUE")
          print(f"TRUE")
          generate_tone(560, 1)
+         pass
 def print_sensor():
  while True:
 
@@ -74,6 +75,7 @@ def print_sensor():
   print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
   print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
   time.sleep(0.1)
+  pass
 
 accelerometer_thread = threading.Thread(target=hit_threshold)
 background_thread = threading.Thread(target=print_sensor)
