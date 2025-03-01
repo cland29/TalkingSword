@@ -20,8 +20,8 @@ i2c = I2C(1)
 
 sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 
-accelerometer_1 = adafruit_adxl345.ADXL345(i2c, 0x1d)
-accelerometer_2 = adafruit_adxl345.ADXL345(i2c, 0x53)
+accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
+accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
 
 
 while True:
