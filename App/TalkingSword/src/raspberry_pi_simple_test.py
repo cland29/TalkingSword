@@ -37,4 +37,4 @@ while True:
  print(f"Gravity (m/s^2): {sensor.gravity}")
  print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
  print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
- time.sleep(0.5)
+ 
