@@ -11,7 +11,7 @@ from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
 import adafruit_adxl34x
 import sys
-import pygame as pg
+import pygame
 import os
 import numpy as np
 
