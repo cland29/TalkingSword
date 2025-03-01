@@ -63,7 +63,7 @@ while True:
  time.sleep(0.1)
 while True:
     x1,y1,z1 =accelerometer_1.acceleration
-    if x1 > 5:
+    if x1 > 1.1:
         generate_tone(560, 1)
 
 
