@@ -25,6 +25,9 @@ accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
 
 
 while True:
+
+ print("\033c", end="")
+
  print(f"Accelerometer (m/s^2): {sensor.acceleration}")
  print(f"Magnetometer (microteslas): {sensor.magnetic}")
  print(f"Gyroscope (rad/sec): {sensor.gyro}")
@@ -34,3 +37,4 @@ while True:
  print(f"Gravity (m/s^2): {sensor.gravity}")
  print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
  print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
+ time.sleep(0.5)
