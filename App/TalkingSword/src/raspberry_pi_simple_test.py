@@ -48,6 +48,17 @@ pygame.time.delay(int(duration * 1000))  # Wait for sound to finish
 generate_tone(440, 2)
 
 while True:
+    x2,y2,z2 =accelerometer_2.acceleration
+    if x2 > 2:
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        generate_tone(560, 1)
+
+while True:
 
  print("\033c", end="")
 
@@ -61,16 +72,7 @@ while True:
  print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
  print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
  time.sleep(0.1)
-while True:
-    x2,y2,z2 =accelerometer_2.acceleration
-    if x2 > 2:
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        generate_tone(560, 1)
+
 
 
  
