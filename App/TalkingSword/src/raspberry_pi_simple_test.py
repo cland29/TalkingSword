@@ -59,6 +59,7 @@ def hit_threshold():
          print(f"TRUE")
          print(f"TRUE")
          generate_tone(560, 1)
+         time.sleep(0.1)
          pass
 def print_sensor():
  while True:
