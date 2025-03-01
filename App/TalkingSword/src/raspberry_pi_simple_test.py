@@ -14,6 +14,7 @@ import sys
 import pygame
 import os
 import numpy as np
+import threading
 
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
@@ -47,32 +48,42 @@ pygame.time.delay(int(duration * 1000))  # Wait for sound to finish
 
 generate_tone(440, 2)
 
-while True:
-    x2,y2,z2 =accelerometer_2.acceleration
-    if x2 > 2:
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        print(f"TRUE")
-        generate_tone(560, 1)
+def hit_threshold():
+    while True:
+        x2,y2,z2 =accelerometer_2.acceleration
+        if x2 > 2:
+         print(f"TRUE")
+         print(f"TRUE")
+         print(f"TRUE")
+         print(f"TRUE")
+         print(f"TRUE")
+         print(f"TRUE")
+         generate_tone(560, 1)
+def print_sensor():
+ while True:
 
-while True:
+  print("\033c", end="")
 
- print("\033c", end="")
+  print(f"Accelerometer (m/s^2): {sensor.acceleration}")
+  print(f"Magnetometer (microteslas): {sensor.magnetic}")
+  print(f"Gyroscope (rad/sec): {sensor.gyro}")
+  print(f"Euler angle: {sensor.euler}")
+  print(f"Quaternion: {sensor.quaternion}")
+  print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
+  print(f"Gravity (m/s^2): {sensor.gravity}")
+  print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
+  print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
+  time.sleep(0.1)
 
- print(f"Accelerometer (m/s^2): {sensor.acceleration}")
- print(f"Magnetometer (microteslas): {sensor.magnetic}")
- print(f"Gyroscope (rad/sec): {sensor.gyro}")
- print(f"Euler angle: {sensor.euler}")
- print(f"Quaternion: {sensor.quaternion}")
- print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
- print(f"Gravity (m/s^2): {sensor.gravity}")
- print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
- print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
- time.sleep(0.1)
+  accelerometer_thread = threading.Thread(target=hit_threshold)
+background_thread = threading.Thread(target=print_sensor)
 
+# Start both threads
+hit_threshold.start()
+background_thread.start()
 
+# Main thread will continue running
+print_sensor.join()
+background_thread.join()
 
  
