@@ -62,8 +62,14 @@ while True:
  print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
  time.sleep(0.1)
 while True:
-    x1,y1,z1 =accelerometer_1.acceleration
-    if x1 > 1.1:
+    x2,y2,z2 =accelerometer_2.acceleration
+    if x1 > 2:
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
+        print(f"TRUE")
         generate_tone(560, 1)
 
 
