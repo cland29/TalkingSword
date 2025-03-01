@@ -29,6 +29,8 @@ accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
 
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
 
+duration=1
+
 def generate_tone(frequency, duration, volume=1):
     sample_rate = 44100  # 44.1 kHz sample rate
     n_samples = int(sample_rate * duration)
