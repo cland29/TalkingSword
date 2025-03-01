@@ -10,6 +10,10 @@ import time
 from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
 import adafruit_adxl34x
+import sys
+import pygame as pg
+import os
+import numpy as np
 
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
@@ -23,6 +27,23 @@ sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
 accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
 
+pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
+
+def generate_tone(frequency, duration, volume=1):
+    sample_rate = 44100  # 44.1 kHz sample rate
+    n_samples = int(sample_rate * duration)
+    t = np.linspace(0, duration, n_samples, False)
+
+    wave = np.sin(2 * np.pi * frequency * t)  # Generate sine wave
+    wave = (wave * 32767).astype(np.int16)  # Convert to 16-bit PCM format
+
+    sound = pygame.sndarray.make_sound(wave)
+    sound.set_volume(volume)
+    sound.play()
+
+pygame.time.delay(int(duration * 1000))  # Wait for sound to finish
+
+generate_tone(440, 2)
 
 while True:
 
