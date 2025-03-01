@@ -46,7 +46,7 @@ def generate_tone(frequency, duration, volume=1):
 
 pygame.time.delay(int(duration * 1000))  # Wait for sound to finish
 
-generate_tone(440, 2)
+generate_tone(440, 1)
 
 lock = threading.Lock()
 
@@ -55,9 +55,17 @@ def hit_threshold():
         try:
             with lock:
              x2,y2,z2 =accelerometer_2.acceleration
-             if x2 > 2:
-              print(f"TRUE")
+             if x2 > 4:
+              print(f"Stab")
               generate_tone(560, 0.1)
+             elif y2 > 4:
+              print(f"Slash")
+              generate_tone(240, 0.1)
+             elif z2 > 4:
+              print(f"Slash")
+              generate_tone(860, 0.1)
+             else:
+              print("False")
         except Exception as e:
             print(f"double")
         time.sleep(0.1)
