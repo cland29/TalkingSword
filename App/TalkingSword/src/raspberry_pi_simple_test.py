@@ -63,7 +63,7 @@ while True:
  time.sleep(0.1)
 while True:
     x2,y2,z2 =accelerometer_2.acceleration
-    if x1 > 2:
+    if x2 > 2:
         print(f"TRUE")
         print(f"TRUE")
         print(f"TRUE")
