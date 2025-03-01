@@ -75,7 +75,7 @@ def print_sensor():
   print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
   time.sleep(0.1)
 
-  accelerometer_thread = threading.Thread(target=hit_threshold)
+accelerometer_thread = threading.Thread(target=hit_threshold)
 background_thread = threading.Thread(target=print_sensor)
 
 # Start both threads
