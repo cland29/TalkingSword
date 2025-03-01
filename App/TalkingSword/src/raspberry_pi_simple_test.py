@@ -13,8 +13,7 @@ have it enabled. You will have to manually enable it
 """
 
 import time
-from adafruit_extended_bus 
-"import ExtendedI2C as I2C"
+from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
 import adafruit_adxl34x
 
@@ -23,11 +22,11 @@ import adafruit_adxl34x
 
 # Create library object using our Extended Bus I2C port
 # Use `ls /dev/i2c*` to find out what i2c devices are connected
-
+i2c = I2C(1)
 
 sensor = adafruit_bno055.BNO055_I2C(0x28)
 
-last_val = 0xFFFF
+"last_val = 0xFFFF"
 accelerometer_1 = adafruit_adxl34x.ADXL345(0x1d)
 accelerometer_2 = adafruit_adxl34x.ADXL345(0x53)
 
@@ -43,15 +42,13 @@ def temperature():
 
 
 while True:
-    print("Temperature: {} degrees C".format(temperature()))
-    print("Accelerometer (m/s^2): {}".format(sensor.acceleration))
-    print("Magnetometer (microteslas): {}".format(sensor.magnetic))
-    print("Gyroscope (rad/sec): {}".format(sensor.gyro))
-    print("Euler angle: {}".format(sensor.euler))
-    print("Quaternion: {}".format(sensor.quaternion))
-    print("Linear acceleration (m/s^2): {}".format(sensor.linear_acceleration))
-    print("Gravity (m/s^2): {}".format(sensor.gravity))
-    print("222")
-    print("%f %f %f"%accelerometer_1.acceleration)
-    print("%f %f %f"%accelerometer_2.acceleration)
-    time.sleep(1)
+ print(f"Temperature: {temperature()} degrees C")
+ print(f"Accelerometer (m/s^2): {sensor.acceleration}")
+ print(f"Magnetometer (microteslas): {sensor.magnetic}")
+ print(f"Gyroscope (rad/sec): {sensor.gyro}")
+ print(f"Euler angle: {sensor.euler}")
+ print(f"Quaternion: {sensor.quaternion}")
+ print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
+ print(f"Gravity (m/s^2): {sensor.gravity}")
+ print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
+ print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
