@@ -9,7 +9,7 @@ Adafruit BNO055 Sensor using this library
 import time
 from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
-import adafruit_adxl345
+import adafruit_adxl34x
 
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
