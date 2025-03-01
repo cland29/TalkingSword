@@ -85,7 +85,7 @@ hit_threshold_thread.start()
 print_sensor_thread.start()
 
 # Main thread will continue running
-print_sensor.join()
+hit_threshold_thread.join()
 print_sensor_thread.join()
 
  
