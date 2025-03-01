@@ -3,13 +3,7 @@
 
 """
 This example demonstrates how to instantiate the
-Adafruit BNO055 Sensor using this library and just
-the I2C bus number.
-This example will only work on a Raspberry Pi
-and does require the i2c-gpio kernel module to be
-installed and enabled. Most Raspberry Pis will
-already have it installed, however most do not
-have it enabled. You will have to manually enable it
+Adafruit BNO055 Sensor using this library 
 """
 
 import time
