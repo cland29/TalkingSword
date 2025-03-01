@@ -64,7 +64,7 @@ def hit_threshold():
 def print_sensor():
  while True:
      try:
-         
+       with lock:  
         print("\033c", end="")
 
         print(f"Accelerometer (m/s^2): {sensor.acceleration}")
