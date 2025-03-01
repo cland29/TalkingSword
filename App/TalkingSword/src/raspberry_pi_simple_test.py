@@ -77,15 +77,15 @@ def print_sensor():
   time.sleep(0.1)
   pass
 
-accelerometer_thread = threading.Thread(target=hit_threshold)
-background_thread = threading.Thread(target=print_sensor)
+hit_threshold_thread = threading.Thread(target=hit_threshold)
+print_sensor_thread = threading.Thread(target=print_sensor)
 
 # Start both threads
-hit_threshold.start()
-background_thread.start()
+hit_threshold_thread.start()
+print_sensor_thread.start()
 
 # Main thread will continue running
 print_sensor.join()
-background_thread.join()
+print_sensor_thread.join()
 
  
