@@ -13,21 +13,23 @@ have it enabled. You will have to manually enable it
 """
 
 import time
-from adafruit_extended_bus import ExtendedI2C as I2C
+from adafruit_extended_bus 
+"import ExtendedI2C as I2C"
 import adafruit_bno055
+import adafruit_adxl34x
 
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
 
 # Create library object using our Extended Bus I2C port
 # Use `ls /dev/i2c*` to find out what i2c devices are connected
-i2c = I2C(1)  # Device is /dev/i2c-1
-print(f"i2c type: {type(i2c)} | i2c value: {i2c}")
 
-sensor = adafruit_bno055.BNO055_I2C(i2c)
+
+sensor = adafruit_bno055.BNO055_I2C(0x28)
 
 last_val = 0xFFFF
-
+accelerometer_1 = adafruit_adxl34x.ADXL345(0x1d)
+accelerometer_2 = adafruit_adxl34x.ADXL345(0x53)
 
 def temperature():
     global last_val  # pylint: disable=global-statement
@@ -49,6 +51,7 @@ while True:
     print("Quaternion: {}".format(sensor.quaternion))
     print("Linear acceleration (m/s^2): {}".format(sensor.linear_acceleration))
     print("Gravity (m/s^2): {}".format(sensor.gravity))
-    print()
-
+    print("222")
+    print("%f %f %f"%accelerometer_1.acceleration)
+    print("%f %f %f"%accelerometer_2.acceleration)
     time.sleep(1)
