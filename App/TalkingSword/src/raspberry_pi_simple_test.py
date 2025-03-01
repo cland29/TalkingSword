@@ -25,7 +25,6 @@ accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
 
 
 while True:
- print(f"Temperature: {temperature()} degrees C")
  print(f"Accelerometer (m/s^2): {sensor.acceleration}")
  print(f"Magnetometer (microteslas): {sensor.magnetic}")
  print(f"Gyroscope (rad/sec): {sensor.gyro}")
