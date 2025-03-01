@@ -57,7 +57,7 @@ def hit_threshold():
              x2,y2,z2 =accelerometer_2.acceleration
              if x2 > 2:
               print(f"TRUE")
-              generate_tone(560, 1)
+              generate_tone(560, 0.1)
         except Exception as e:
             print(f"double")
         time.sleep(0.1)
@@ -78,7 +78,7 @@ def print_sensor():
         print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
      except Exception as e:
          print(f"dooble")
-     time.sleep(0.5)
+     time.sleep(1)
 
 hit_threshold_thread = threading.Thread(target=hit_threshold)
 print_sensor_thread = threading.Thread(target=print_sensor)
