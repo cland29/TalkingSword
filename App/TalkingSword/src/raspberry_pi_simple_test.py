@@ -27,8 +27,8 @@ i2c = I2C(1)
 sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 
 #accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
-accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
-accel_1 = AdafruitAdxl34x(29)
+blade_accelerometer = adafruit_adxl34x.ADXL345(i2c, 0x53)
+handle_acclerometer = AdafruitAdxl34x(29)
 
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
 
@@ -56,7 +56,7 @@ def hit_threshold():
     while True:
         try:
             with lock:
-             x2,y2,z2 =accelerometer_2.acceleration
+             x2,y2,z2 =blade_accelerometer.acceleration
              if x2 > 4:
               print(f"Stab")
               generate_tone(560, 0.1)
@@ -85,8 +85,8 @@ def print_sensor():
         print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
         print(f"Gravity (m/s^2): {sensor.gravity}")
         #print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
-        print(f"Test!accel 1: {accel_1.get_x()} {accel_1.get_y()} {accel_1.get_z()}")
-        print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
+        print(f"Test!accel 1: {handle_acclerometer.get_x()} {handle_acclerometer.get_y()} {handle_acclerometer.get_z()}")
+        print(f"accel 2: {blade_accelerometer.acceleration[0]} {blade_accelerometer.acceleration[1]} {blade_accelerometer.acceleration[2]}")
      except Exception as e:
          print(f"dooble")
      time.sleep(1)
