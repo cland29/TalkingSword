@@ -18,6 +18,7 @@ def play_music(music_file):
     stream music with mixer.music module in blocking manner
     this will stream the sound from disk while playing
     '''
+    print(music_file)
     clock = pg.time.Clock()
     try:
         pg.mixer.music.load(music_file)
