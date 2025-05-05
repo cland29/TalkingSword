@@ -87,7 +87,7 @@ def print_sensor():
         print(f"Gravity (m/s^2): {sensor.gravity}")
         #print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
         print(f"Test!accel 1: {handle_acclerometer.get_x()} {handle_acclerometer.get_y()} {handle_acclerometer.get_z()}")
-        print(f"accel 2: {blade_accelerometer.acceleration[0]} {blade_accelerometer.acceleration[1]} {blade_accelerometer.acceleration[2]}")
+        print(f"accel 2: {blade_accelerometer.get_x()} {blade_accelerometer.get_y()} {blade_accelerometer.get_z()}")
      except Exception as e:
          print(f"dooble")
      time.sleep(1)
