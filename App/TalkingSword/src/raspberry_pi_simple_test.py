@@ -16,6 +16,7 @@ import os
 import numpy as np
 import threading
 
+from Hardware.accelerometer import *
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
 
@@ -25,8 +26,9 @@ i2c = I2C(1)
 
 sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 
-accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
+#accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
 accelerometer_2 = adafruit_adxl34x.ADXL345(i2c, 0x53)
+accel_1 = AdafruitAdxl34x(0x1d)
 
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
 
@@ -82,7 +84,8 @@ def print_sensor():
         print(f"Quaternion: {sensor.quaternion}")
         print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
         print(f"Gravity (m/s^2): {sensor.gravity}")
-        print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
+        #print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
+        print(f"Test!accel 1: {accel_1.get_x()} {accel_1.get_y()} {accel_1.get_z()}")
         print(f"accel 2: {accelerometer_2.acceleration[0]} {accelerometer_2.acceleration[1]} {accelerometer_2.acceleration[2]}")
      except Exception as e:
          print(f"dooble")
