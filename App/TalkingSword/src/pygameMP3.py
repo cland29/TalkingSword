@@ -60,7 +60,7 @@ if len(sys.argv) > 1:
     print("Playing at volume: " + str(user_volume)+ "\n")
     pg.mixer.music.set_volume(user_volume)
     mp3s = []
-    for file in os.listdir("."):
+    for file in os.listdir("./Sounds"):
         if file.endswith(".mp3"):
             mp3s.append(file)
 
