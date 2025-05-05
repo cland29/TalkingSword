@@ -27,7 +27,7 @@ i2c = I2C(1)
 sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 
 #accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
-blade_accelerometer = adafruit_adxl34x.ADXL345(i2c, 0x53)
+blade_accelerometer = AdafruitAdxl34x(0x53)
 handle_acclerometer = AdafruitAdxl34x(29)
 
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
@@ -56,14 +56,14 @@ def hit_threshold():
     while True:
         try:
             with lock:
-             x2,y2,z2 =blade_accelerometer.acceleration
-             if x2 > 4:
+             
+             if blade_accelerometer.get_x() > 4:
               print(f"Stab")
               generate_tone(560, 0.1)
-             elif y2 > 4:
+             elif blade_accelerometer.get_y() > 4:
               print(f"Slash")
               generate_tone(240, 0.1)
-             elif z2 > 4:
+             elif blade_accelerometer.get_z() > 4:
               print(f"Slash")
               generate_tone(860, 0.1)
              else:
