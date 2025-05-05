@@ -68,7 +68,7 @@ if len(sys.argv) > 1:
 
     for x in mp3s: 
         try:
-            play_music(x)
+            play_music("./Sounds" + x)
             time.sleep(.25)
         except KeyboardInterrupt:
             # if user hits Ctrl/C then exit
