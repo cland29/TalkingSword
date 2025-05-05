@@ -17,6 +17,7 @@ import numpy as np
 import threading
 
 from Hardware.accelerometer import *
+from Constants.HardwareMap import BLADE_ACCELEROMETER_ID, HANDLE_ACCELEROMETER_ID
 # To enable i2c-gpio, add the line `dtoverlay=i2c-gpio` to /boot/config.txt
 # Then reboot the pi
 
@@ -27,8 +28,8 @@ i2c = I2C(1)
 sensor = adafruit_bno055.BNO055_I2C(i2c, 0x28)
 
 #accelerometer_1 = adafruit_adxl34x.ADXL345(i2c, 0x1d)
-blade_accelerometer = AdafruitAdxl34x(0x53)
-handle_acclerometer = AdafruitAdxl34x(29)
+blade_accelerometer = AdafruitAdxl34x(BLADE_ACCELEROMETER_ID)
+handle_acclerometer = AdafruitAdxl34x(HANDLE_ACCELEROMETER_ID)
 
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
 
