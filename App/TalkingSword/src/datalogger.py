@@ -43,7 +43,7 @@ def get_current_datetime_string() -> str:
     Format: YYYY-MM-DD HH:MM
     """
     current_datetime = datetime.now()
-    return current_datetime.strftime("%Y-%m-%d %H:%M")
+    return current_datetime.strftime("%Y-%m-%d_%H:%M")
 
 def save_sensor_data_to_csv(file_path: str, sensor, handle_acclerometer, blade_accelerometer) -> None:
     """
@@ -125,8 +125,8 @@ def print_sensor():
 sum = 0
 while sum < 30:
    sum += 1
-
-   print_sensor()
+   print(sum)
+   save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv", sensor,  handle_acclerometer=handle_acclerometer, blade_accelerometer=blade_accelerometer)
 
 
 #hit_threshold_thread = threading.Thread(target=hit_threshold)
