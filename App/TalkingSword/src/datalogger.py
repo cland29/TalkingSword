@@ -115,22 +115,29 @@ def hit_threshold():
         time.sleep(0.1)
 def print_sensor():
  while True:
-     try:
+     #try:
        with lock:  
         save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv")
-     except Exception as e:
-         print(f"dooble?")
-     time.sleep(1)
+     #except Exception as e:
+         #print(f"dooble?")
+        time.sleep(1)
 
-hit_threshold_thread = threading.Thread(target=hit_threshold)
-print_sensor_thread = threading.Thread(target=print_sensor)
+sum = 0
+while sum < 30:
+   sum += 1
+
+   print_sensor()
+
+
+#hit_threshold_thread = threading.Thread(target=hit_threshold)
+#print_sensor_thread = threading.Thread(target=print_sensor)
 
 # Start both threads
-hit_threshold_thread.start()
-print_sensor_thread.start()
+#hit_threshold_thread.start()
+#print_sensor_thread.start()
 
 # Main thread will continue running
-hit_threshold_thread.join()
-print_sensor_thread.join()
+#hit_threshold_thread.join()
+#print_sensor_thread.join()
 
  
