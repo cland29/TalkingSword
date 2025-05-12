@@ -117,7 +117,7 @@ def print_sensor():
  while True:
      #try:
        with lock:  
-        save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv")
+        save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv", handle_acclerometer=handle_acclerometer, blade_accelerometer=blade_accelerometer)
      #except Exception as e:
          #print(f"dooble?")
         time.sleep(1)
