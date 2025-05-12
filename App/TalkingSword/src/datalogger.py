@@ -119,7 +119,7 @@ def print_sensor():
        with lock:  
         save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv")
      except Exception as e:
-         print(f"dooble")
+         print(f"dooble?")
      time.sleep(1)
 
 hit_threshold_thread = threading.Thread(target=hit_threshold)
