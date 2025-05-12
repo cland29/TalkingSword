@@ -15,6 +15,8 @@ import pygame
 import os
 import numpy as np
 import threading
+from datetime import datetime
+import csv
 
 from Hardware.accelerometer import *
 from Constants.HardwareMap import BLADE_ACCELEROMETER_ID, HANDLE_ACCELEROMETER_ID
@@ -34,6 +36,45 @@ handle_acclerometer = AdafruitAdxl34x(HANDLE_ACCELEROMETER_ID)
 pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=1024)
 
 duration=1
+
+def get_current_datetime_string() -> str:
+    """
+    Returns the current date and time up to the nearest minute as a formatted string.
+    Format: YYYY-MM-DD HH:MM
+    """
+    current_datetime = datetime.now()
+    return current_datetime.strftime("%Y-%m-%d %H:%M")
+
+def save_sensor_data_to_csv(file_path: str, sensor, handle_acclerometer, blade_accelerometer) -> None:
+    """
+    Saves sensor data to a new line in the specified CSV file.
+
+    Args:
+        file_path (str): The path to the CSV file.
+        sensor: The sensor object with data attributes.
+        handle_acclerometer: The handle accelerometer object.
+        blade_accelerometer: The blade accelerometer object.
+    """
+    data = [
+        get_current_datetime_string(),
+        sensor.acceleration,
+        sensor.magnetic,
+        sensor.gyro,
+        sensor.euler,
+        sensor.quaternion,
+        sensor.linear_acceleration,
+        sensor.gravity,
+        handle_acclerometer.get_x(),
+        handle_acclerometer.get_y(),
+        handle_acclerometer.get_z(),
+        blade_accelerometer.get_x(),
+        blade_accelerometer.get_y(),
+        blade_accelerometer.get_z()
+    ]
+
+    with open(file_path, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(data)
 
 def generate_tone(frequency, duration, volume=1):
     sample_rate = 44100  # 44.1 kHz sample rate
@@ -76,18 +117,7 @@ def print_sensor():
  while True:
      try:
        with lock:  
-        print("\033c", end="")
-
-        print(f"Accelerometer (m/s^2): {sensor.acceleration}")
-        print(f"Magnetometer (microteslas): {sensor.magnetic}")
-        print(f"Gyroscope (rad/sec): {sensor.gyro}")
-        print(f"Euler angle: {sensor.euler}")
-        print(f"Quaternion: {sensor.quaternion}")
-        print(f"Linear acceleration (m/s^2): {sensor.linear_acceleration}")
-        print(f"Gravity (m/s^2): {sensor.gravity}")
-        #print(f"accel 1: {accelerometer_1.acceleration[0]} {accelerometer_1.acceleration[1]} {accelerometer_1.acceleration[2]}")
-        print(f"Test!accel 1: {handle_acclerometer.get_x()} {handle_acclerometer.get_y()} {handle_acclerometer.get_z()}")
-        print(f"accel 2: {blade_accelerometer.get_x()} {blade_accelerometer.get_y()} {blade_accelerometer.get_z()}")
+        save_sensor_data_to_csv(f"datafiles/{get_current_datetime_string()}.csv")
      except Exception as e:
          print(f"dooble")
      time.sleep(1)
