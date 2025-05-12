@@ -43,7 +43,7 @@ def get_current_datetime_string() -> str:
     Format: YYYY-MM-DD HH:MM
     """
     current_datetime = datetime.now()
-    return current_datetime.strftime("%Y-%m-%d_%H:%M")
+    return current_datetime.strftime("%Y-%m-%d_%H_%M")
 
 def save_sensor_data_to_csv(file_path: str, sensor, handle_acclerometer, blade_accelerometer) -> None:
     """
